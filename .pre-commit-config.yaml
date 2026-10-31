@@ -1,0 +1,27 @@
+ci:
+  skip: [mypy, pytest]
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.0
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy
+        entry: uv run mypy
+        language: python
+        types: [python]
+        require_serial: true
+
+      - id: pytest
+        name: pytest
+        entry: uv run pytest --cov=torchinfo --cov-report=html --durations=0
+        language: python
+        types: [python]
+        always_run: true
+        pass_filenames: false
+        verbose: true

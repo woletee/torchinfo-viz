@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="logo" aria-hidden="true">ti</span>
+    <div><h1 id="model-name"></h1><p class="sub">torchinfo model report</p></div>
+  </div>
+  <div class="stats" id="stats"></div>
+</header>
+<div class="toolbar">
+  <div class="seg" id="views" aria-label="View">
+    <button data-view="graph" aria-pressed="false">Graph</button>
+    <button data-view="flow" aria-pressed="true">Flow</button>
+    <button data-view="treemap" aria-pressed="false">Treemap</button>
+    <button data-view="table" aria-pressed="false">Table</button>
+  </div>
+  <div class="metric">
+    <span>Size &amp; color by</span>
+    <div class="seg" id="metrics" aria-label="Metric">
+      <button data-metric="params" aria-pressed="true">Params</button>
+      <button data-metric="macs" aria-pressed="false">Mult-adds</button>
+      <button data-metric="memory" aria-pressed="false">Output memory</button>
+    </div>
+  </div>
+</div>
+<main class="layout">
+  <aside class="panel tree-panel" aria-label="Layer tree">
+    <div class="search"><input id="search" type="search" placeholder="Search layers  ( / )" autocomplete="off"></div>
+    <div id="tree" class="tree"></div>
+  </aside>
+  <section class="panel view">
+    <div id="view-graph" class="view-pane">
+      <div class="graph-wrap" id="graph-wrap">
+        <div class="gtools">
+          <div class="seg"><button data-gact="fit" title="Fit the whole graph">Fit</button><button data-gact="out" title="Zoom out">−</button><button data-gact="in" title="Zoom in">+</button></div>
+          <div class="seg glevel"><button data-gact="less" title="Collapse one level">−</button><span id="graph-level"></span><button data-gact="more" title="Expand one level">+</button></div>
+        </div>
+        <svg id="graph-svg" role="img" aria-label="Model graph">
+          <defs>
+            <marker id="ga" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ga"/></marker>
+            <marker id="gah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="gah"/></marker>
+          </defs>
+          <g id="graph-root"></g>
+        </svg>
+        <div class="legend" id="graph-legend"></div>
+        <div class="ghint">Scroll or drag to move · Ctrl + scroll to zoom · double-click a dashed block to open it</div>
+      </div>
+    </div>
+    <div id="view-flow" class="view-pane on"></div>
+    <div id="view-treemap" class="view-pane"><nav id="crumbs" class="crumbs"></nav><div id="treemap" class="treemap"></div></div>
+    <div id="view-table" class="view-pane"></div>
+  </section>
+  <aside class="panel details" id="details" aria-live="polite"></aside>
+</main>
+<script id="torchinfo-data" type="application/json">__DATA__</script>
+<script>/*__JS__*/</script>
+</body>
+</html>
